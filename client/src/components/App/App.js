@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import AddEntry from '../AddEntry.jsx';
 import CurrentEntries from '../CurrentEntries.jsx';
-import Footer from '../Footer.jsx'
 
 function App() {
 
@@ -13,8 +12,6 @@ function App() {
       <AddEntry />
       <hr />
       <CurrentEntries />
-      <hr />
-      <Footer />
     </div>
   )
 }

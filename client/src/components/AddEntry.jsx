@@ -1,9 +1,8 @@
 import { useState, useRef } from 'react';
-import DisplayJob from './DisplayJob.jsx';
-import {Route, Routes} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios'
 
-const AddEntry = () => {
+const AddEntry = (props) => {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -29,13 +28,8 @@ const AddEntry = () => {
     setEmailAddress('')
   }
   
-  function refreshPage() {
-    window.location.reload(false);
-  }
-  const redirectToJob = () => {
-    window.location.href="/DisplayJob.js";
-  }
-  
+  const navigate = useNavigate();
+
   return (
     <div className="addEntry">
       <h2>Add an Entry</h2>
@@ -56,7 +50,7 @@ const AddEntry = () => {
           onClick={() => {
             if (firstName.length > 0 && lastName.length > 0 && emailAddress.length > 0) {
               submitEntry();
-              redirectToJob;
+              navigate("/job");
             }
           }}
         >Add Entry</button>

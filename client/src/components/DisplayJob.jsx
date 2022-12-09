@@ -1,15 +1,20 @@
-import { useState, useRef } from 'react';
-import AddEntry from './AddEntry.jsx';
-import {Route, Router} from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios'
 
-const DisplayJob = () => {
+const DisplayJob = (props) => {
 
+    const [jobList, setJobList] = useState([]);
 
-    const redirectToApp = () => {
-        window.location.href="/App.js";
-    }
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_HOST}/api/read`).then((response) => {
+          setJobList(response.data)
+        })
+    }, [])
 
+    const navigate = useNavigate();
+
+    // TODO get and post for retrieving job data and updating volunteer count
 
     return (
         <div className="DisplayJob">
@@ -19,7 +24,7 @@ const DisplayJob = () => {
                 <h2>Location: </h2>
                 <h2>Supervisor: </h2>
             </div>
-            <button onClick={redirectToApp}>Done</button>
+            <button className="doneBtn" onClick={ () => navigate(-1)}>Done</button>
         </div>
     )
 }
