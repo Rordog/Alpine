@@ -3,7 +3,8 @@ const router = express.Router();
 const mysql = require('mysql')
 const dotenv = require('dotenv').config()
 
-const db = mysql.createPool({ // createConnection
+// Create Connection
+const db = mysql.createPool({
     host: 'localhost',
     user: process.env.DBUSER,
     password: process.env.DBPASS,
@@ -34,7 +35,6 @@ router.post("/", (req, res) => {
             res.send(newJob)
         })
     }
-
 })
 
 // READ
@@ -51,37 +51,28 @@ router.get("/", (req, res) => {
     })
 })
 
-// UPDATE
+// TODO UPDATE
 // Update job
-router.put("/:jobID", (req, res) => {
+router.put("/:numVolReq", (req, res) => {
 
-    const updateJobID = req.body;
+    const queriedJobID = req.query.jobID;
+    const newNumberVolunteers = req.query.numVolReq;
 
-    // = {
-    //     supervisorFirst: req.body.supervisorFirst,
-    //     supervisorLast: req.body.supervisorLast,
-    //     job: req.body.job,
-    //     numVolunteersReq: req.body.numVolunteersReq
-    // }
+    // const getJob = `SELECT * FROM jobs WHERE jobID = ${updateJobID}`
+    // db.query(getJob, (err, result)=>{
 
-    const getJob = `SELECT * FROM jobs WHERE jobID = ${updateJobID}`
-    db.query(getJob, (err, result)=>{
+    // })
 
-    })
-
-
-    const sqlUpdate = `UPDATE jobs SET ${''} = "${''}" WHERE jobID = "${updateJobID}"`
+    const sqlUpdate = `UPDATE jobs SET numVolunteersReq = ${newNumberVolunteers} WHERE jobID = "${queriedJobID}"`
     db.query(sqlUpdate, (err, result)=>{
         if (err) throw err;
-        res.send(result)
+        res.json(result)
     })
 })
 
 // DELETE
 router.delete("/", (req, res) => {
-    
     const deleteJobID = req.query.jobID; 
-    console.log(deleteJobID)
 
     const sqlDelete = `DELETE FROM jobs WHERE jobID = "${deleteJobID}"`;
     db.query(sqlDelete, (err, result) => {
