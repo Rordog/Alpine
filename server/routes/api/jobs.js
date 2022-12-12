@@ -51,17 +51,11 @@ router.get("/", (req, res) => {
     })
 })
 
-// TODO UPDATE
 // Update job
 router.put("/:numVolReq", (req, res) => {
 
     const queriedJobID = req.query.jobID;
     const newNumberVolunteers = req.query.numVolReq;
-
-    // const getJob = `SELECT * FROM jobs WHERE jobID = ${updateJobID}`
-    // db.query(getJob, (err, result)=>{
-
-    // })
 
     const sqlUpdate = `UPDATE jobs SET numVolunteersReq = ${newNumberVolunteers} WHERE jobID = "${queriedJobID}"`
     db.query(sqlUpdate, (err, result)=>{
