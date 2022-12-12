@@ -16,7 +16,6 @@ const JobSheet = () =>{
     width: 130,
   },
 ];
-	console.log(process.env.REACT_APP_HOST);
 
 const [entryList, setEntryList] = useState([])
 
@@ -26,7 +25,6 @@ useEffect(() => {
 	})
 }, [])
 
-console.log(entryList);
 
 const rows = entryList.map(entry => {
   return{
