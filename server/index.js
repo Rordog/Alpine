@@ -19,8 +19,6 @@ app.get("/", (req, res) => {
     res.send(`<h1>Express Server</h1><p>${msg}<p>`) 
 })
 
-
-
 app.listen(PORT, () => {
     console.log(msg)
 })

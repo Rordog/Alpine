@@ -48,11 +48,12 @@ router.get("/", (req, res) => {
         }
         // Actual result data
         // res.send(result);
-        res.json(result);
+        res.send(result);
     })
 })
 
-// Update job
+// UPDATE
+// Updates the number of volunteers required
 router.put("/:numVolReq", (req, res) => {
 
     const queriedJobID = req.query.jobID;
@@ -61,7 +62,7 @@ router.put("/:numVolReq", (req, res) => {
     const sqlUpdate = `UPDATE jobs SET numVolunteersReq = ${newNumberVolunteers} WHERE jobID = "${queriedJobID}"`
     db.query(sqlUpdate, (err, result)=>{
         if (err) throw err;
-        res.json(result)
+        res.send(result)
     })
 })
 
