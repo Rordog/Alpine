@@ -20,6 +20,7 @@ router.post("/", (req, res) => {
         supervisorFirst: req.query.supervisorFirst,
         supervisorLast: req.query.supervisorLast,
         numVolunteersReq: req.query.numVolunteersReq,
+        jobLocation: req.query.jobLocation
     }
 
     // If any fields are empty, return 400 and error msg
@@ -29,7 +30,7 @@ router.post("/", (req, res) => {
 
     // Else, add the job to the database
     else{
-        const sqlInsert = `INSERT INTO jobs (jobName, supervisorFirst, supervisorLast, numVolunteersReq) VALUES ("${newJob.jobName}","${newJob.supervisorFirst}","${newJob.supervisorLast}",${newJob.numVolunteersReq});`
+        const sqlInsert = `INSERT INTO jobs (jobName, supervisorFirst, supervisorLast, numVolunteersReq, jobLocation) VALUES ("${newJob.jobName}","${newJob.supervisorFirst}","${newJob.supervisorLast}",${newJob.numVolunteersReq}, "${newJob.jobLocation}");`
         db.query(sqlInsert, (err, result) => {
             if(err) throw err
             res.send(newJob)
