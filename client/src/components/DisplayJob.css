@@ -1,11 +1,24 @@
-body {
-    margin:0 10px;
+header {
+    background: white;
+    width: 100%;
+}
+.header img{
+    width: 300px;
+    height: 100px;
+}
+footer{
+	margin-top: 10px;
+	background: white;
+	width: 100%;
+}
+.endImg img{
+    width: 80%;
 }
 h1 {
     text-align: center;
     font-size: 50px;
     color: black;
-    padding-top: 50px;
+    padding-top: 20px;
 }
 h2 {
     text-align: center;
@@ -14,12 +27,14 @@ h2 {
 }
 .DisplayJob {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: salmon;
+    background-color: rgb(255, 255, 255);
     margin: auto;
+    width: 60%;
+    text-align: center;
 }    
-.doneBtn {
-    margin: 20px;
+.doneBtn { 
     padding: 10px;
-    width: 50%;
-    margin: 10px auto;
+    width: 80%;
+    text-align: center;
+    border: 1px solid #b01b1f;
 }

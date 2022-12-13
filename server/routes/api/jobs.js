@@ -20,6 +20,7 @@ router.post("/", (req, res) => {
         supervisorFirst: req.query.supervisorFirst,
         supervisorLast: req.query.supervisorLast,
         numVolunteersReq: req.query.numVolunteersReq,
+        jobLocation: req.query.jobLocation
     }
 
     // If any fields are empty, return 400 and error msg
@@ -29,7 +30,7 @@ router.post("/", (req, res) => {
 
     // Else, add the job to the database
     else{
-        const sqlInsert = `INSERT INTO jobs (jobName, supervisorFirst, supervisorLast, numVolunteersReq) VALUES ("${newJob.jobName}","${newJob.supervisorFirst}","${newJob.supervisorLast}",${newJob.numVolunteersReq});`
+        const sqlInsert = `INSERT INTO jobs (jobName, supervisorFirst, supervisorLast, numVolunteersReq, jobLocation) VALUES ("${newJob.jobName}","${newJob.supervisorFirst}","${newJob.supervisorLast}",${newJob.numVolunteersReq}, "${newJob.jobLocation}");`
         db.query(sqlInsert, (err, result) => {
             if(err) throw err
             res.send(newJob)
@@ -47,26 +48,21 @@ router.get("/", (req, res) => {
         }
         // Actual result data
         // res.send(result);
-        res.json(result);
+        res.send(result);
     })
 })
 
-// TODO UPDATE
-// Update job
+// UPDATE
+// Updates the number of volunteers required
 router.put("/:numVolReq", (req, res) => {
 
     const queriedJobID = req.query.jobID;
     const newNumberVolunteers = req.query.numVolReq;
 
-    // const getJob = `SELECT * FROM jobs WHERE jobID = ${updateJobID}`
-    // db.query(getJob, (err, result)=>{
-
-    // })
-
     const sqlUpdate = `UPDATE jobs SET numVolunteersReq = ${newNumberVolunteers} WHERE jobID = "${queriedJobID}"`
     db.query(sqlUpdate, (err, result)=>{
         if (err) throw err;
-        res.json(result)
+        res.send(result)
     })
 })
 
