@@ -34,7 +34,6 @@ const DisplayJob = (props) => {
 	} else {
 		setTracker((c)=>0);
 	}
-	console.log("tracker update " + tracker);
 	localStorage.setItem('tracker', String(tracker));
     } 
     
